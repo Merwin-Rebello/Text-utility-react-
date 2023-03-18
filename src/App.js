@@ -1,9 +1,15 @@
 // import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/NavBar';
+import About from './components/About';
 import Textarea1 from './components/Textarea1';
 import React, { useState } from 'react';
 import Alert from './components/Alert';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 // let name2= "Merwin Rebello";
 function App() {
@@ -25,6 +31,7 @@ function App() {
      setmode('dark');
      document.body.style.backgroundColor= 'grey';
       showalert(" nigga mode is enabled","success")
+      document.title="TEXTutil-DARKMODE";
    }
     else{
     setmode('light');
@@ -67,16 +74,25 @@ function App() {
 //        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quisquam minus aut dolore eaque accusantium, dignissimos necessitatibus id repellendus cum tempore enim consequatur incidunt neque!
 //     </div>
 // </>
-<>
+    <>
+<Router>
    <NavBar title='Merwin Rebello'about='ABOUT US' mode={mode} togglemode={togglemode}/>
     <Alert alert={alert}/>
+    
     {/* <NavBar/> this will take the default value set  */}
     <div className='container my-3'>
-      <Textarea1 showalert={showalert} heading='Enter the text to analyze'/>
+    <Routes>
+          <Route exact path="/about" element={<About />}>
+            
+          </Route>
+          <Route exact path="/"element={<Textarea1 showalert={showalert} heading='Enter the text to analyze'/>}>
+            
+          </Route>
+    </Routes>
     </div>
-  
-</>  
-    ); 
+</Router>
+</>
+    );    
 }
 
 export default App;
